@@ -17,6 +17,13 @@ body {
     padding-right: 15px;
 }
 
+.curr-user{
+    padding-top:15px;
+    padding-bottom:15px;
+    color:#999999;
+    display:block;
+}
+
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
