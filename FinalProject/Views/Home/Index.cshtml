@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<header>
+    <canvas id="main-header" width="500" height="100">
+        Your browser does not support the HTML5 canvas tag.
+    </canvas>
+</header>
+<div class="jumbotron main-jumbo clearfix">
+    <div class="pull-left">
+        <h1>TM Book Store</h1>
+        <div class="main-intro">
+            Our brand is one of the top brands in the country in selling books. We aim to attract students. Reading books is important.Our brand is one of the top brands in the country in selling books. We aim to attract students. Reading books is important.
+        </div>
+    </div>
+    <div class="pull-right">
+        <video width="300" height="240" controls="controls">
+            <source src="~/videos/National%20Book%20Store%20'I%20Found'%20TV%20Commercial.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+        </video>
+    </div>
+</div>
+@section scripts{
+    <script type="text/javascript">
+        $(function () {
+            var c = document.getElementById("main-header");
+            var ctx = c.getContext("2d");
+            ctx.font = "20px Arial";
+            ctx.strokeText("Hello and welcome to our book shop!", 10, 50);
+
+                $('.loading').hide();
+        });
+    </script>
+    }

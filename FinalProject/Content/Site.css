@@ -1,0 +1,85 @@
+﻿/* Creating a new font family using font face */
+@font-face {
+   font-family: main-blog-font;
+   src:  local('Racing Sans One'), local('RacingSansOne-Regular'), url(http://fonts.gstatic.com/s/racingsansone/v4/1r3DpWaCiT7y3PD4KgkNyJbhOpL-vLTkIjCTuVYsuO0.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    font-family: main-blog-font;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.navbar-brand {
+    background: url('../images/logo.jpg') no-repeat center;
+    background-size:contain;
+    display: block;
+    width:120px;
+    height:50px;
+    text-indent: -9999px; /* hides the link text */
+    -webkit-transition: width 2s, height 2s; /* For Safari 3.1 to 6.0 */
+    transition: width 2s, height 2s;
+}
+
+.navbar-brand:hover{
+    height:75px;
+}
+
+/*Home page*/
+.jumbotron.main-jumbo{
+    width:100%;
+    border-radius: 15px 50px;
+}
+
+.jumbotron h1 {
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+.jumbotron.main-jumbo > div{
+    margin:5px;
+}
+
+.jumbotron.main-jumbo > div.pull-left{
+    width:50%;
+}
+
+.main-intro{
+    -webkit-column-count: 2; /* Chrome, Safari, Opera */
+    -moz-column-count: 2; /* Firefox */
+    column-count: 2;
+    -webkit-column-gap: 40px; /* Chrome, Safari, Opera */
+    -moz-column-gap: 40px; /* Firefox */
+    column-gap: 40px;
+    -webkit-column-rule-style: solid; /* Chrome, Safari, Opera */
+    -moz-column-rule-style: solid; /* Firefox */
+    column-rule-style: solid;
+    -webkit-column-rule-width: 1px; /* Chrome, Safari, Opera */
+    -moz-column-rule-width: 1px; /* Firefox */
+    column-rule-width: 1px;
+    -webkit-column-rule-color: lightblue; /* Chrome, Safari, Opera */
+    -moz-column-rule-color: lightblue; /* Firefox */
+    column-rule-color: lightblue;
+}
+
