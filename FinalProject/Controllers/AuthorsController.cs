@@ -16,11 +16,42 @@ namespace FinalProject.Controllers
         private BookStoreContext db = new BookStoreContext();
 
         // GET: Authors
-        public ActionResult Index()
+        public ActionResult Index(string age, string AuthorName, string city)
         {
-            return View(db.Authors.ToList());
+            var authors = db.Authors.AsQueryable();
+            
+            if (!String.IsNullOrEmpty(age))
+            {
+                authors = SearchByAge(authors, age);
+            }
+
+            if (!String.IsNullOrEmpty(AuthorName))
+            {
+                authors = SearchByAuthorName(authors, AuthorName);
+            }
+
+            if (!String.IsNullOrEmpty(city))
+            {
+                authors = SearchByCity(authors, city);
+            }
+            
+            return View(authors);
         }
 
+        public IQueryable<Author> SearchByAge(IQueryable<Author> authors, string strage)
+        {
+            int age = int.Parse(strage);
+            return authors.Where(s => s.Age == age);
+        }
+        public IQueryable<Author> SearchByAuthorName(IQueryable<Author> authors, string AuthorName)
+        {
+            return authors.Where(s => s.Name.Contains(AuthorName));
+        }
+        public IQueryable<Author> SearchByCity(IQueryable<Author> authors, string city)
+        {
+            return authors.Where(s => s.City.Contains(city));
+        }
+   
         // GET: Authors/Details/5
         public ActionResult Details(long? id)
         {
