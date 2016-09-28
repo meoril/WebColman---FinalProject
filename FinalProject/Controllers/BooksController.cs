@@ -16,9 +16,25 @@ namespace FinalProject.Controllers
         private BookStoreContext db = new BookStoreContext();
 
         // GET: Books
-        public ActionResult Index()
+        public ActionResult Index(string bookName, string AuthorName, string price)
         {
             var books = db.Books.Include(b => b.Author);
+
+            if (!String.IsNullOrEmpty(bookName))
+            {
+                books = books.Where(s => s.Name.Contains(bookName));
+            }
+
+            if (!String.IsNullOrEmpty(AuthorName))
+            {
+                books = books.Where(x => x.Author.Name.Contains(AuthorName));
+            }
+
+            if (!String.IsNullOrEmpty(price))
+            {
+                books = books.Where(y => y.Price.ToString().Contains(price));
+            }
+
             return View(books.ToList());
         }
 

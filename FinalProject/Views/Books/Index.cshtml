@@ -8,6 +8,19 @@
 <h2>Index</h2>
 
 <p>
+
+    @using (Html.BeginForm("Index", "Books", FormMethod.Get))
+    {
+    <p>
+        book Name: @Html.TextBox("bookName") 
+        Author Name: @Html.TextBox("AuthorName") 
+        price: @Html.TextBox("price") 
+        <input type="submit" value="Filter" />
+    </p>
+    }
+</p>
+<p>
+
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
