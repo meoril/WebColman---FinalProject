@@ -25,13 +25,6 @@ namespace FinalProject.Migrations
                 new Customer { Age = 59, City = "Beer Sheva", Name = "Liat Cohen" }
             };
 
-            var book1Customers = new List<Customer>
-            {
-                customers[0],
-                customers[2],
-                customers[4]
-            };
-
             customers.ForEach(c => context.Customers.AddOrUpdate(c));
             context.SaveChanges();
 
