@@ -22,22 +22,35 @@ namespace FinalProject.Controllers
 
             if (!String.IsNullOrEmpty(bookName))
             {
-                books = books.Where(s => s.Name.Contains(bookName));
+                books = SearchByBookName(books, bookName);
             }
 
             if (!String.IsNullOrEmpty(AuthorName))
             {
-                books = books.Where(x => x.Author.Name.Contains(AuthorName));
+                books = SearchByAuthorName(books, AuthorName);
             }
 
             if (!String.IsNullOrEmpty(price))
             {
-                books = books.Where(y => y.Price.ToString().Contains(price));
+                books = SearchByPrice(books, price);
             }
 
             return View(books.ToList());
         }
 
+        public IQueryable<Book> SearchByBookName(IQueryable<Book> books, string bookName)
+        {
+            return books.Where(s => s.Name.Contains(bookName));
+        }
+        public IQueryable<Book> SearchByAuthorName(IQueryable<Book> books, string AuthorName)
+        {
+            return books.Where(s => s.Author.Name.Contains(AuthorName));
+        }
+        public IQueryable<Book> SearchByPrice(IQueryable<Book> books, string strprice)
+        {
+            int price = int.Parse(strprice);
+            return books.Where(s => s.Price == price);
+        }
         // GET: Books/Details/5
         public ActionResult Details(long? id)
         {

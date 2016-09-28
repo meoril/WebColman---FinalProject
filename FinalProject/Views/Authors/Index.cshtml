@@ -6,7 +6,18 @@
 }
 
 <h2>Index</h2>
+<p>
 
+    @using (Html.BeginForm("Index", "Authors", FormMethod.Get))
+    {
+    <p>
+        age: @Html.TextBox("age")
+        Author Name: @Html.TextBox("AuthorName")
+        city: @Html.TextBox("city")
+        <input type="submit" value="Filter" />
+    </p>
+    }
+    </p>
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
