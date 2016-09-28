@@ -40,6 +40,7 @@ namespace FinalProject.Controllers
             }
         }
 
+        // ApplicationUserManager
         public ApplicationUserManager UserManager
         {
             get
