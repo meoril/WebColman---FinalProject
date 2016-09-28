@@ -21,16 +21,15 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    @if (HttpContext.Current.User.IsInRole("admin"))
+                    @if (User.Identity.IsAuthenticated)
                     {
-                        <li>@Html.ActionLink("Admin Dashboard", "Index", "Admin")</li>
                         <li>@Html.ActionLink("Customers", "Index", "Customer")</li>
                     }
                     <li>@Html.ActionLink("Books", "Index", "Books")</li>
                     <li>@Html.ActionLink("Authors", "Index", "Authors")</li>
                     <li>@Html.ActionLink("Branches Map", "Index", "Branches")</li>
-                    <li>@Html.ActionLink("Authors Books Statistics", "AuthorsBooksStatistics", "Statistics")</li>
-                    <li>@Html.ActionLink("Customers City Statistics", "CustomersCityStatistics", "Statistics")</li>
+                    <li>@Html.ActionLink("Authors Books Stats", "AuthorsBooksStatistics", "Statistics")</li>
+                    <li>@Html.ActionLink("Customers City Stats", "CustomersCityStatistics", "Statistics")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
