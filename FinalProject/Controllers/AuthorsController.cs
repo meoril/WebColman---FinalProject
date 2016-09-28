@@ -28,7 +28,9 @@ namespace FinalProject.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Author author = db.Authors.Find(id);
+            Author author = db.Authors.Include(a => a.Books)
+                .SingleOrDefault(a => a.Id == id);
+            
             if (author == null)
             {
                 return HttpNotFound();

@@ -10,7 +10,7 @@ namespace FinalProject.Models
     {
         public Book()
         {
-            this.BookToCustomers = new HashSet<CustomerBook>();
+            this.Customers = new HashSet<Customer>();
         }
 
 
@@ -29,6 +29,6 @@ namespace FinalProject.Models
         public long AuthorId { get; set; }
 
         public virtual Author Author { get; set; }
-        public virtual ICollection<CustomerBook> BookToCustomers { get; set; }
+        public virtual ICollection<Customer> Customers { get; set; }
     }
 }

@@ -10,7 +10,7 @@ namespace FinalProject.Models
     {
         public Customer()
         {
-            this.BookToCustomers = new HashSet<CustomerBook>();
+            this.Books = new HashSet<Book>();
         }
 
         [Key]
@@ -19,6 +19,6 @@ namespace FinalProject.Models
         public int Age { get; set; }
         public string City { get; set; }
 
-        public virtual ICollection<CustomerBook> BookToCustomers { get; set; }
+        public virtual ICollection<Book> Books { get; set; }
     }
 }

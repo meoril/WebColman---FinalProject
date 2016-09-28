@@ -25,6 +25,13 @@ namespace FinalProject.Migrations
                 new Customer { Age = 59, City = "Beer Sheva", Name = "Liat Cohen" }
             };
 
+            var book1Customers = new List<Customer>
+            {
+                customers[0],
+                customers[2],
+                customers[4]
+            };
+
             customers.ForEach(c => context.Customers.AddOrUpdate(c));
             context.SaveChanges();
 
@@ -40,55 +47,19 @@ namespace FinalProject.Migrations
 
             var books = new List<Book>
             {
-                new Book { Name = "The Lord of the Rings", NumberOfPages = 3256, Price = 100, AuthorId = 3},
-                new Book { Name = "The Fellowship of the Ring", NumberOfPages = 780, Price = 110 , AuthorId = 3},
-                new Book { Name = "The Two Towers", NumberOfPages = 840, Price = 60 , AuthorId = 3},
-                new Book { Name = "The journal of a startupist", NumberOfPages = 185, Price = 55 , AuthorId = 1 },
-                new Book { Name = "The Hobbit", NumberOfPages = 240, Price = 70, AuthorId = 3},
-                new Book { Name = "A Game of Thrones", NumberOfPages = 945, Price = 150, AuthorId = 2},
-                new Book { Name = "A Clash of Kings", NumberOfPages = 768, Price = 150, AuthorId = 2 },
-                new Book { Name = "A Storm of Swords", NumberOfPages = 973, Price = 150, AuthorId = 2 }
+                new Book { Name = "The Lord of the Rings", NumberOfPages = 3256, Price = 100, AuthorId = 3, Customers = new List<Customer> { customers[0], customers[2], customers[4] } },
+                new Book { Name = "The Fellowship of the Ring", NumberOfPages = 780, Price = 110 , AuthorId = 3, Customers = new List<Customer> { customers[0], customers[1], customers[4] } },
+                new Book { Name = "The Two Towers", NumberOfPages = 840, Price = 60 , AuthorId = 3, Customers = new List<Customer> { customers[0], customers[2], customers[3] } },
+                new Book { Name = "The journal of a startupist", NumberOfPages = 185, Price = 55 , AuthorId = 1, Customers = new List<Customer> { customers[0], customers[1], customers[2] } },
+                new Book { Name = "The Hobbit", NumberOfPages = 240, Price = 70, AuthorId = 3, Customers = new List<Customer> { customers[0], customers[2] } },
+                new Book { Name = "A Game of Thrones", NumberOfPages = 945, Price = 150, AuthorId = 2, Customers = new List<Customer> { customers[1], customers[2], customers[4] } },
+                new Book { Name = "A Clash of Kings", NumberOfPages = 768, Price = 150, AuthorId = 2, Customers = new List<Customer> { customers[0], customers[2], customers[3] } },
+                new Book { Name = "A Storm of Swords", NumberOfPages = 973, Price = 150, AuthorId = 2, Customers = new List<Customer> { customers[0] } }
             };
 
             books.ForEach(b => context.Books.AddOrUpdate(b));
             context.SaveChanges();
-
-            var customersBooks = new List<CustomerBook>
-            {
-                new CustomerBook { BookId = 1, CustomerId = 2 },
-                new CustomerBook { BookId = 1, CustomerId = 1 },
-                new CustomerBook { BookId = 1, CustomerId = 5 },
-                new CustomerBook { BookId = 1, CustomerId = 4 },
-                new CustomerBook { BookId = 2, CustomerId = 1 },
-                new CustomerBook { BookId = 2, CustomerId = 4 },
-                new CustomerBook { BookId = 2, CustomerId = 5 },
-                new CustomerBook { BookId = 2, CustomerId = 3 },
-                new CustomerBook { BookId = 3, CustomerId = 2 },
-                new CustomerBook { BookId = 3, CustomerId = 1 },
-                new CustomerBook { BookId = 3, CustomerId = 3 },
-                new CustomerBook { BookId = 3, CustomerId = 4 },
-                new CustomerBook { BookId = 4, CustomerId = 2 },
-                new CustomerBook { BookId = 4, CustomerId = 1 },
-                new CustomerBook { BookId = 4, CustomerId = 3 },
-                new CustomerBook { BookId = 4, CustomerId = 4 },
-                new CustomerBook { BookId = 5, CustomerId = 5 },
-                new CustomerBook { BookId = 5, CustomerId = 2 },
-                new CustomerBook { BookId = 5, CustomerId = 3 },
-                new CustomerBook { BookId = 5, CustomerId = 4 },
-                new CustomerBook { BookId = 6, CustomerId = 2 },
-                new CustomerBook { BookId = 6, CustomerId = 1 },
-                new CustomerBook { BookId = 6, CustomerId = 3 },
-                new CustomerBook { BookId = 6, CustomerId = 5 },
-                new CustomerBook { BookId = 7, CustomerId = 2 },
-                new CustomerBook { BookId = 7, CustomerId = 1 },
-                new CustomerBook { BookId = 7, CustomerId = 3 },
-                new CustomerBook { BookId = 7, CustomerId = 4 },
-                new CustomerBook { BookId = 7, CustomerId = 5 }
-            };
-
-            customersBooks.ForEach(cb => context.CustomersBooks.Add(cb));
-            context.SaveChanges();
-
+            
             var branches = new List<Branch>
             {
                 new Branch{PlaceName="Azrieli Mall, Tel Aviv" , OpeningHours="08:00-20:00, S-T", GeoLong="34.7916200" ,GeoLat="32.0757120"},

@@ -11,7 +11,6 @@ namespace FinalProject.Context
     public class BookStoreContext : DbContext
     {
         public virtual DbSet<Author> Authors { get; set; }
-        public virtual DbSet<CustomerBook> CustomersBooks { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Book> Books { get; set; }
         public virtual DbSet<Branch> Branches { get; set; }
@@ -23,6 +22,15 @@ namespace FinalProject.Context
                 .HasRequired<Author>(b => b.Author) // book requires one author
                 .WithMany(a => a.Books) // author has many books
                 .HasForeignKey(b => b.AuthorId);
+            modelBuilder.Entity<Book>()
+                .HasMany<Customer>(b => b.Customers)
+                .WithMany(c => c.Books)
+                .Map(cb =>
+                {
+                    cb.MapLeftKey("BookRefId");
+                    cb.MapRightKey("CustomerRefId");
+                    cb.ToTable("BookCustomer");
+                });
         }
     }
 }
