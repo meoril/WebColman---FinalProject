@@ -19,6 +19,10 @@ namespace FinalProject.Context
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            modelBuilder.Entity<Book>()
+                .HasRequired<Author>(b => b.Author) // book requires one author
+                .WithMany(a => a.Books) // author has many books
+                .HasForeignKey(b => b.AuthorId);
         }
     }
 }
