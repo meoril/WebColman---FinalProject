@@ -174,7 +174,7 @@
     <Compile Include="Controllers\BranchesController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\StatsController.cs" />
+    <Compile Include="Controllers\StatisticsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -258,7 +258,8 @@
     <Content Include="Views\Customers\Index.cshtml" />
     <Content Include="Views\Branches\Index.cshtml" />
     <Content Include="Views\Admin\Login.cshtml" />
-    <Content Include="Views\Stats\AuthorsBooksStats.cshtml" />
+    <Content Include="Views\Statistics\AuthorsBooksStatistics.cshtml" />
+    <Content Include="Views\Statistics\CustomersCityStatistics.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
