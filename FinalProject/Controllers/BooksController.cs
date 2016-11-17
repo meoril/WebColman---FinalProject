@@ -103,6 +103,7 @@ namespace FinalProject.Controllers
             {
                 return HttpNotFound();
             }
+            // Reloading the authors data for in the format needed on client
             ViewBag.AuthorId = new SelectList(db.Authors, "Id", "Name", book.AuthorId);
             return View(book);
         }
@@ -114,12 +115,14 @@ namespace FinalProject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Name,NumberOfPages,Price,AuthorId")] Book book)
         {
+            // Validating the given book's model before saving the modifications
             if (ModelState.IsValid)
             {
                 db.Entry(book).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            // Reloading the authors data for in the format needed on client
             ViewBag.AuthorId = new SelectList(db.Authors, "Id", "Name", book.AuthorId);
             return View(book);
         }

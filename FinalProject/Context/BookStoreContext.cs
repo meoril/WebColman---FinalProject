@@ -17,7 +17,11 @@ namespace FinalProject.Context
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            // Removes the pluralizing table name convention from the db model builder (mostly removes the 's'
+            // from tables names suffix)
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+
+            // Configuring the constraints for the db model
             modelBuilder.Entity<Book>()
                 .HasRequired<Author>(b => b.Author) // book requires one author
                 .WithMany(a => a.Books) // author has many books

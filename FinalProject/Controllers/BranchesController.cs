@@ -22,10 +22,15 @@ namespace FinalProject.Controllers
             return View();
         }
 
+        /// <summary>
+        /// This method returns all branches in json format.
+        /// </summary>
+        /// <returns>All the branches as json array</returns>
         public string GetAllBranches()
         {
             using (var context = new BookStoreContext())
             {
+                // Fetching the branches as array and serializing the data to json format using JavaScriptSerializer
                 return _jsonSerializer.Serialize(context.Branches.ToArray());
             }
         }

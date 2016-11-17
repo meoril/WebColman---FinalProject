@@ -35,34 +35,40 @@
     <script type="text/javascript">
         $(function () {
             google.maps.visualRefresh = true;
+            // Setting the map options such as the initial zoom level, the initial center of the map and the map's type
             var mapOptions = {
                 zoom: 11,
                 center: new google.maps.LatLng(32.0853000, 34.7817680),
                 mapTypeId: google.maps.MapTypeId.G_NORMAL_MAP
             };
+
+            // Set the #map_canvas dom element (div) as the container of the map
             var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+
+            // Load the branches json array with jquery (in ajax) 
             $.getJSON("../Branches/GetAllBranches", function (getAllBranches) {
                 console.log(getAllBranches.length);
                 for (var i = 0; i < getAllBranches.length; i++) {
-
-
+                    // Set a marker for the current branch at it's location on the map
                     var marker = new google.maps.Marker({
                         'position': new google.maps.LatLng(getAllBranches[i]["GeoLat"], getAllBranches[i]["GeoLong"]),
                         'map': map,
                         'title': getAllBranches[i]["PlaceName"]
                     });
 
+                    // Create the tooltip's template using the current branch's details
                     var content = "<div><h2>" + getAllBranches[i]["PlaceName"] +
                         "</h2>" + "<div><h4>Opening hours: " + getAllBranches[i]["OpeningHours"] + "</h4></div></div>";
-                    bindInfoWindow(marker, map, new google.maps.InfoWindow(), content);
+                    bindTooltip(marker, map, new google.maps.InfoWindow(), content);
                 }
             });
         });
 
-        function bindInfoWindow(marker, map, infowindow, html) {
+        // Adds the tooltip click event to the map objects
+        function bindTooltip(marker, map, tooltip, html) {
             google.maps.event.addListener(marker, 'click', function () {
-                infowindow.setContent(html);
-                infowindow.open(map, marker);
+                tooltip.setContent(html);
+                tooltip.open(map, marker);
             });
         }
     </script>
