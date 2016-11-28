@@ -18,27 +18,33 @@
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script>
 
+    // configure basic view settings for the chart
     var width = 960,
         height = 500,
         radius = Math.min(width, height) / 2;
 
+    // set the colors for the chart
     var color = d3.scale.ordinal()
         .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
 
+    // set the pie's radius (and avoid donut chart)
     var arc = d3.svg.arc()
         .outerRadius(radius - 10)
         .innerRadius(0);
 
+    // create the pie chart element
     var pie = d3.layout.pie()
         .sort(null)
         .value(function (d) { return d.population; });
 
+    // append the pie dom element to the container 
     var svg = d3.select("#authorsBooksCount").append("svg")
         .attr("width", width)
         .attr("height", height)
       .append("g")
         .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
+    // load the values from the service comma seperated
     d3.csv("GetAuthorsAndBooksCount", function (error, data) {
 
         data.forEach(function (d) {
@@ -60,6 +66,7 @@
             .style("text-anchor", "middle")
             .text(function (d) { return d.data.age; });
 
+        // hide loading gif
         $('.loading').hide();
 
     });
